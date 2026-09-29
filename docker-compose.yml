@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  worker:
+    build: .
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - JUDGE0_API_URL=http://judge0-server:2358
+      - API_BASE_URL=http://host.docker.internal:8000/api
+      - API_AUTH_TOKEN=dev_token
+      - WORKER_CONCURRENCY=4
+    depends_on:
+      - redis
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+# Judge0 can be deployed via its own docker-compose, or included here.
+# For simplicity, we assume Judge0 is deployed separately, but we could add it here if needed.
