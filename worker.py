@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 # Config
 CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL", "redis://localhost:6379/0")
-JUDGE0_API_URL = os.getenv("JUDGE0_API_URL", "http://localhost:2358")
+JUDGE0_API_URL = os.getenv("JUDGE0_API_URL", "http://localhost:23580")
 API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000/api")
 API_AUTH_TOKEN = os.getenv("API_AUTH_TOKEN", "secret")
 
